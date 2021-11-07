@@ -10,3 +10,20 @@ Research project for nowcasting GDP for South Africa
 5. **scripts** is for scripts that are supplemental to source code
 6. **src** is for the source code
 
+# R Projects
+
+When working on code please open from R Project at root folder structure
+to preserve relative file paths.
+
+
+## Google Trends Data
+
+In data/google_trends/ there is a keywords file. One can add any keywords of
+interest to this file.
+
+The "scripts/download_and_save_google_trends_data.R" processes the keywords list
+and saves the data back to "data/google_trends/" using keywords with the current
+date as a suffix.
+
+
+
