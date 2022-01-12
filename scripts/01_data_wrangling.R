@@ -1,4 +1,4 @@
-#****************************************************************************************************************
+# 
 # Notes:
 #
 #  1) Didn't round figures
@@ -6,28 +6,30 @@
 #  3) Will add code for function error handling (if necessary)
 #  4) Report any issues
 #
-#****************************************************************************************************************
+#
 
-#### Call Packages - Can Move These to External Script
-library(tidyverse)
-library(cellranger)
-library(readxl)
-library(magrittr)
-library(Hmisc)
-library(psych)
-library(janitor)
-library(forecast)
-library(lubridate)
+# Install and load packages -------------------------------------------
 
-#### Import Raw Data
-Main_Raw_Data <- read_xlsx("C:\\Users\\ruan6\\OneDrive\\data_values_first_iteration.xlsx", sheet="data", range=cell_rows(c(4,NA)))         # Main (Bloomberg) Data; Change path as needed, Start Data Import From 4th Row
-BER_Raw_Data <- read_xlsx("C:\\Users\\ruan6\\OneDrive\\rmb_bci(1).xlsx", sheet="South Africa")                                             # BER Data. Change path as needed
-Reuters_Raw_Data <- read_xlsx("C:\\Users\\ruan6\\OneDrive\\Economic Indicator_South Africa Total New Vehicle Sales__2 Nov 2021.xlsx",      # Thomson Reuters Data. Change path as needed, Start Data Import From 17th Row
-                              sheet="Historical Values", range=cell_rows(c(17,NA)))
+source("./scripts/00_load_packages.R")
 
-#### Prepping Data
-### Prepping Main Raw Data
-Main_Raw_Data_New <- Main_Raw_Data[-c(1:2),]                                           # Remove Redundant Rows
+
+# Import Raw Data -----------------------------------------------------
+
+# Main (Bloomberg) Data. Start Data Import From 4th Row
+main_raw_data <- read_xlsx("./data/data_main.xlsx", sheet="data", range=cell_rows(c(4,NA)))
+
+# BER Data. Change path as needed
+ber_raw_data <- read_xlsx("./data/data_ber.xlsx", sheet="South Africa")
+
+# Thomson Reuters Data for November. Start Data Import From 17th Row
+reuters_raw_data <- read_xlsx("./data/data_vehicle_sales.xlsx", sheet="Historical Values", range=cell_rows(c(17,NA)))
+
+# Prepping Data -------------------------------------------------------
+
+# Prepping Main Raw Data
+main_raw_data_new <- Main_Raw_Data[-c(1:2),]                                      
+
+# Remove Redundant Rows
 head(Main_Raw_Data_New)                                                                # Have a Quick Look at the Data
 
 colnames(Main_Raw_Data_New)                                                            # Check whether there are Missing Headers or Other Header Issues
