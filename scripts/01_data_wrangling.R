@@ -1,39 +1,46 @@
-# 
+
+
 # Notes:
 #
 #  1) Didn't round figures
 #  2) Will add code later that will exclude variables that are rates or are MoM/QoQ/YoY from being transformed
 #  3) Will add code for function error handling (if necessary)
 #  4) Report any issues
-#
-#
 
 # Install and load packages -------------------------------------------
 
 source("./scripts/00_load_packages.R")
 
-
 # Import Raw Data -----------------------------------------------------
 
 # Main (Bloomberg) Data. Start Data Import From 4th Row
-main_raw_data <- read_xlsx("./data/data_main.xlsx", sheet="data", range=cell_rows(c(4,NA)))
+main_raw_data <- read_xlsx("./data/data_main.xlsx",
+  sheet = "data", range = cell_rows(c(4, NA))
+)
 
 # BER Data. Change path as needed
-ber_raw_data <- read_xlsx("./data/data_ber.xlsx", sheet="South Africa")
+ber_raw_data <- read_xlsx("./data/data_ber.xlsx",
+  sheet = "South Africa"
+)
 
 # Thomson Reuters Data for November. Start Data Import From 17th Row
-reuters_raw_data <- read_xlsx("./data/data_vehicle_sales.xlsx", sheet="Historical Values", range=cell_rows(c(17,NA)))
+reuters_raw_data <- read_xlsx("./data/data_vehicle_sales.xlsx",
+  sheet = "Historical Values",
+  range = cell_rows(c(17, NA))
+)
 
 # Prepping Data -------------------------------------------------------
 
-# Prepping Main Raw Data
-main_raw_data_new <- Main_Raw_Data[-c(1:2),]                                      
-
 # Remove Redundant Rows
-head(Main_Raw_Data_New)                                                                # Have a Quick Look at the Data
+main_raw_data_new <- main_raw_data[-c(1:2), ]                                    
 
-colnames(Main_Raw_Data_New)                                                            # Check whether there are Missing Headers or Other Header Issues
-Colnames <- colnames(Main_Raw_Data_New)                                                # Get Column Names
+# head(main_raw_data_new)                                                          
+
+# Check whether there are Missing Headers or Other Header Issues
+# colnames(main_raw_data_new)                                                            
+# Get Column Names
+Colnames <- colnames(main_raw_data_new)
+
 Colnames[1] <- "Date"                                                                  # Add Column Name for Dates Column
 Colnames <- str_replace(Colnames,"\\.\\.\\.[0-9]+","")                                 # Replace Nonsense in Headers
 colnames(Main_Raw_Data_New) <- Colnames                                                # Re-assign Column Names

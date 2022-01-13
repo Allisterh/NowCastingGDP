@@ -1,7 +1,7 @@
 
 # Prepare Packages and Functions ------------------------------------------
 
-# Install and load packges
+# Install and load packages
 source("./scripts/00_load_packages.R")
 
 # load keywords list
